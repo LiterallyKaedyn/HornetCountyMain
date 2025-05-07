@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - Hornet County</title>
+    <link rel="stylesheet" href="/assets/css/7-5-25-styling.css">
+    <link rel="icon" href="/assets/img/hc.png" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/assets/img/hc.png" alt="Hornet County Logo">
+            <span>Hornet County</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/roadmap/">Development</a></li>
+            <li><a href="https://discord.gg/u3RQFS66mR">Discord Server</a></li>
+            <li><a href="https://www.roblox.com/communities/33119851/Hornet-County-Community#!/about">Roblox Group</a></li>
+        </ul>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-content right" id="coowner1">
+            <div>
+                <h2 class="username">@Loading...</h2>
+                <p>Founder and Lead Developer. Designs systems, manages backend, and ensures Hornet County evolves with stability and innovation.</p>
+            </div>
+            <img class="avatar" src="" alt="Co-owner avatar">
+        </div>
+
+        <div class="about-content left" id="coowner2">
+            <img class="avatar" src="" alt="Co-owner avatar">
+            <div>
+                <h2 class="username">@Loading...</h2>
+                <p>Co-Owner and Community Director. Manages events, listens to feedback, and ensures the community has a safe, welcoming atmosphere.</p>
+            </div>
+        </div>
+
+        <div class="about-content right" id="coowner3">
+            <div>
+                <h2 class="username">@Loading...</h2>
+                <p>Founder and Lead Developer. Designs systems, manages backend, and ensures Hornet County evolves with stability and innovation.</p>
+            </div>
+            <img class="avatar" src="" alt="Co-owner avatar">
+        </div>
+
+        <!-- Game Info Section -->
+        <div class="about-content center">
+            <h2>What is Hornet County?</h2>
+            <p>Hornet County is a Roblox roleplay game focused on realism, creativity, and community-driven narratives. Players can take on roles in law enforcement, emergency services, or as civilians navigating a dynamic, evolving county. With constant updates, detailed builds, and an engaged team, we aim to push the limits of Roblox roleplay and make every session unique.</p>
+            <p>Join us in shaping this evolving world. Your story starts here.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Hornet County Community. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript to load Roblox data -->
+    <script>
+        const coOwners = [
+            { id: 2289434529, elementId: 'coowner1' },
+            { id: 1378840733, elementId: 'coowner2' },
+            { id: 1325539998, elementId: 'coowner3'}
+        ];
+
+        coOwners.forEach(user => {
+            // Get username
+            fetch(`https://users.roblox.com/v1/users/${user.id}`)
+                .then(res => res.json())
+                .then(data => {
+                    const usernameEl = document.querySelector(`#${user.elementId} .username`);
+                    if (usernameEl) usernameEl.textContent = `@${data.name}`;
+                });
+
+            // Set avatar headshot
+            const avatarEl = document.querySelector(`#${user.elementId} .avatar`);
+            if (avatarEl) {
+                avatarEl.src = `https://www.roblox.com/headshot-thumbnail/image?userId=${user.id}&width=150&height=150&format=png`;
+            }
+        });
+    </script>
+</body>
+</html>
